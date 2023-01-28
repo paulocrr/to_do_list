@@ -18,6 +18,46 @@ class HomePage extends StatelessWidget {
             const Expanded(
               child: AddTaskForm(),
             ),
+            Expanded(
+              flex: 4,
+              child: ListView(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: false,
+                            onChanged: (value) {},
+                          ),
+                          Column(
+                            children: const [
+                              Text(
+                                "Tarea 1",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                "Lun 19, 2023",
+                                style: TextStyle(fontSize: 8),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {},
+                      )
+                    ],
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
