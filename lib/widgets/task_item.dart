@@ -1,25 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:to_do_list/models/task.dart';
 
-class TaskItem extends StatelessWidget {
-  final String title;
-  final DateTime date;
+class TaskItem extends StatefulWidget {
+  final Task task;
+
   const TaskItem({
     super.key,
-    required this.title,
-    required this.date,
+    required this.task,
   });
 
+  @override
+  State<TaskItem> createState() => _TaskItemState();
+}
+
+class _TaskItemState extends State<TaskItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
         leading: Checkbox(
-          value: false,
-          onChanged: (value) {},
+          value: widget.task.isDone,
+          onChanged: (value) {
+            setState(() {
+              widget.task.isDone = value ?? false;
+            });
+          },
         ),
-        title: Text(title),
-        subtitle: Text(DateFormat('dd-MM-yyyy').format(date)),
+        title: Text(
+          widget.task.title,
+          style: TextStyle(
+            decoration: widget.task.isDone
+                ? TextDecoration.lineThrough
+                : TextDecoration.none,
+          ),
+        ),
+        subtitle: Text(DateFormat('dd-MM-yyyy').format(widget.task.date)),
         trailing: IconButton(
           icon: const Icon(
             Icons.delete,
