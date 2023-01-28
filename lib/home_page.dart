@@ -3,6 +3,7 @@ import 'package:to_do_list/language/to_do_list_texts.dart';
 import 'package:to_do_list/models/task.dart';
 import 'package:to_do_list/widgets/add_task_form.dart';
 import 'package:to_do_list/widgets/task_list.dart';
+import 'package:uuid/uuid.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,9 +14,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var tasks = [
-    Task(title: 'Tarea 1', date: DateTime.now()),
-    Task(title: 'Tarea 2', date: DateTime.now()),
-    Task(title: 'Tarea 3', date: DateTime.now()),
+    Task(id: const Uuid().v1(), title: 'Tarea 1', date: DateTime.now()),
+    Task(id: const Uuid().v1(), title: 'Tarea 2', date: DateTime.now()),
+    Task(id: const Uuid().v1(), title: 'Tarea 3', date: DateTime.now()),
   ];
 
   @override
@@ -31,8 +32,12 @@ class _HomePageState extends State<HomePage> {
           children: [
             Expanded(
               child: AddTaskForm(
-                onSave: (taskTile) {
-                  final newTask = Task(title: taskTile, date: DateTime.now());
+                onSave: (taskTitle) {
+                  final newTask = Task(
+                    id: const Uuid().v1(),
+                    title: taskTitle,
+                    date: DateTime.now(),
+                  );
                   setState(() {
                     tasks.add(newTask);
                   });

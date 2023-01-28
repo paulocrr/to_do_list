@@ -3,11 +3,13 @@ import 'package:intl/intl.dart';
 import 'package:to_do_list/models/task.dart';
 
 class TaskItem extends StatefulWidget {
+  final Function(Task)? onRemove;
   final Task task;
 
   const TaskItem({
     super.key,
     required this.task,
+    this.onRemove,
   });
 
   @override
@@ -41,7 +43,13 @@ class _TaskItemState extends State<TaskItem> {
             Icons.delete,
             color: Colors.red,
           ),
-          onPressed: () {},
+          onPressed: () {
+            final removeAction = widget.onRemove;
+
+            if (removeAction != null) {
+              removeAction(widget.task);
+            }
+          },
         ),
       ),
     );
