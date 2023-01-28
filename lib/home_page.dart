@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:to_do_list/language/to_do_list_texts.dart';
 import 'package:to_do_list/models/task.dart';
+import 'package:to_do_list/to_do_list_assets.dart';
 import 'package:to_do_list/widgets/add_task_form.dart';
 import 'package:to_do_list/widgets/task_list.dart';
 import 'package:uuid/uuid.dart';
@@ -38,9 +41,32 @@ class _HomePageState extends State<HomePage> {
                     title: taskTitle,
                     date: DateTime.now(),
                   );
+
                   setState(() {
                     tasks.add(newTask);
                   });
+
+                  Alert(
+                    context: context,
+                    content: Column(
+                      children: [
+                        Lottie.asset(
+                          ToDoListAssets.successAnimation,
+                          repeat: false,
+                        ),
+                        Text(ToDoListTexts.successAddTaskMessage),
+                      ],
+                    ),
+                    buttons: [
+                      DialogButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text(
+                          ToDoListTexts.okMessage,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      )
+                    ],
+                  ).show();
                 },
               ),
             ),

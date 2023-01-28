@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list/home_page.dart';
+import 'package:to_do_list/language/to_do_list_texts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'To-do List',
+      title: ToDoListTexts.appTitle,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
